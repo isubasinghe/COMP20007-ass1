@@ -27,7 +27,7 @@
 #define MAXIMUM_NUM_TERMS 256
 #define DEFAULT_NUM_DOCUMENTS 131563
 
-#define DATA_PATH "data/"
+#define DATA_PATH "./data/"
 #define DATA_PATH_FORMAT DATA_PATH "%s.txt"
 #define MAXIMUM_DATA_PATH_LEN 256
 
