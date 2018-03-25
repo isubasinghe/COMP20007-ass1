@@ -6,7 +6,7 @@
 #
 
 CC     = gcc
-CFLAGS = -Wall -std=c99 -O3 -lpthread -pedantic -Werror
+CFLAGS = -Wall -std=c99 -O3 -lpthread 
 EXE    = a1
 OBJ    = main.o query.o index.o list.o heap.o
 #				add any new object files here ^

@@ -1,31 +1,46 @@
+//
+// Created by isitha on 3/25/2018.
+//
+
+#ifndef HEAP_HEAP_H
+#define HEAP_HEAP_H
+
+#define TRUE 1
+#define FALSE 0
+
 #include <stdio.h>
 #include <stdlib.h>
+#include <math.h>
 
 typedef struct {
-    int data;
     float key;
+    int data;
 } node_t;
 
 typedef struct {
     node_t *data;
-    size_t len;
-    size_t capacity;
+    int len;
+    int capacity;
 } heap_t;
 
-void siftup(heap_t *h, size_t i);
+heap_t *new_heap(int);
 
-void siftdown(heap_t *h, size_t i);
+void swap(node_t *, node_t *);
 
-size_t min_child(heap_t *h, size_t i);
+void siftup(heap_t *h, int);
 
-heap_t *new_heap(size_t len);
+int heap_insert(heap_t *, float, int);
 
-void heap_insert(heap_t *h, float key, int data);
+int min_child(heap_t *, int );
 
-int heap_remove_min(heap_t *h);
+void siftdown(heap_t *h, int);
 
-int heap_peek_min(heap_t *h);
+int heap_remove_min(heap_t *);
 
-float heap_peek_key(heap_t *h);
+int heap_peak_min(heap_t *);
 
-void free_heap(heap_t *h);
+float heap_peak_key(heap_t *);
+
+void free_heap(heap_t *);
+
+#endif //HEAP_HEAP_H

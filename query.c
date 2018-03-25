@@ -21,10 +21,18 @@ void print_array_results(Index *index, int n_results, int n_documents) {
 		// obtain the id and score
 		// then do a scores[id] += score;
 		List *list = index->doclists[i];
-		//This is just to stop -pedantic from
-		// complaining.
-		list = list+1;
-		list = list-1;
+
+		Node *node = list->head;
+
+		while(node != NULL) {
+			Document *doc = (Document *)node->data;
+			scores[doc->id] += doc->score;
+			node = node->next;
+		}
+	}
+
+	for(int i=0; i < n_documents; i++) {
+		printf("%f\n", scores[i]);
 	}
 
 	// Use a priority queue based top k 
