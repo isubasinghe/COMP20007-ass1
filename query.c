@@ -14,7 +14,7 @@ void print_array_results(Index *index, int n_results, int n_documents) {
 
 	for(int i=0; i < n_documents; i++) {
 		scores[i] = 0.0;
-	}
+	} // O(d)
 
 
 	for(int i=0; i < index->num_terms; i++) {
@@ -30,29 +30,38 @@ void print_array_results(Index *index, int n_results, int n_documents) {
 			scores[doc->id] += doc->score;
 			node = node->next;
 		}
-	}
+	} // O(dt)
 
 	heap_t *h = new_heap(n_results);
 
 	for(int i=0; i < n_documents; i++) {
 		if(i < n_results) {
-			heap_insert(h, scores[i], i);
+			heap_insert(h, scores[i], i); 
 		}else {
 			float min_val = heap_peak_key(h);
 			if(scores[i] > min_val) {
 				heap_remove_min(h);
-				heap_insert(h, scores[i], i);
+				heap_insert(h, scores[i], i);  
 			}
 		}
-	}
+	} 
+
+	int *ids = malloc(n_results*sizeof(int));
 
 	for(int i=0; i < n_results; i++) {
-		float val = heap_peak_key(h);
-		heap_remove_min(h);
-		printf("%f\n", val);
+		float score = heap_peak_key(h);
+		int id = heap_remove_min(h);
+		// Re-use the score array to save space.
+		scores[n_results-1-i] = score;
+		ids[i] = id;
+	}
+	free_heap(h);
+
+	for(int i=0; i < n_results; i++) {
+		printf("%6d %.6f\n", ids[i], scores[i]);
 	}
 
-	free_heap(h);
+	free(ids);
 	free(scores);
 }
 
