@@ -19,19 +19,14 @@ void swap(node_t *a, node_t *b) {
 }
 
 void siftup(heap_t *h, int child) {
-    int parent = (child-1)/2;
-    if(child==0) {
-        return;
-    }
     while(1) {
+        int parent = (child-1)/2;
         if(child==0) {
             return;
         }
         if(h->data[parent].key > h->data[child].key) {
             swap(&h->data[parent], &h->data[child]);
             child = parent;
-            parent = child-1/2;
-
         }else {
             return;
         }

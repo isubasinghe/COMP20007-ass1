@@ -16,6 +16,7 @@ void print_array_results(Index *index, int n_results, int n_documents) {
 		scores[i] = 0.0;
 	}
 
+
 	for(int i=0; i < index->num_terms; i++) {
 		// For each document in this list
 		// obtain the id and score
@@ -31,12 +32,27 @@ void print_array_results(Index *index, int n_results, int n_documents) {
 		}
 	}
 
+	heap_t *h = new_heap(n_results);
+
 	for(int i=0; i < n_documents; i++) {
-		printf("%f\n", scores[i]);
+		if(i < n_results) {
+			heap_insert(h, scores[i], i);
+		}else {
+			float min_val = heap_peak_key(h);
+			if(scores[i] > min_val) {
+				heap_remove_min(h);
+				heap_insert(h, scores[i], i);
+			}
+		}
 	}
 
-	// Use a priority queue based top k 
-	// to find the highest n_results.
+	for(int i=0; i < n_results; i++) {
+		float val = heap_peak_key(h);
+		heap_remove_min(h);
+		printf("%f\n", val);
+	}
+
+	free_heap(h);
 	free(scores);
 }
 
