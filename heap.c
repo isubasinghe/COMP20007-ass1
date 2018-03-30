@@ -36,7 +36,6 @@ void siftup(heap_t *h, int child) {
 
 int heap_insert(heap_t *h, float key, int data) {
     if(h->capacity <= h->len) {
-        printf("Allocating more memory\n");
         h->capacity *= 2;
         h->data = realloc(h->data, h->capacity*sizeof(node_t));
         if(h->data == NULL) {

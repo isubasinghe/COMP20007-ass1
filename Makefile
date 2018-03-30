@@ -6,7 +6,11 @@
 #
 
 CC     = gcc
-CFLAGS = -Wall -std=c99
+# Added the -g flag since we need debugging symbols for assert to work.
+# O2 since O2 will likey be faster than O3 in the conditions given.
+# std=c99 since for(int i) style is used.
+# Others for being very picky about errors.
+CFLAGS = -Wall -Werror -pedantic -std=c99 -g -O2
 EXE    = a1
 OBJ    = main.o query.o index.o list.o heap.o
 #				add any new object files here ^
