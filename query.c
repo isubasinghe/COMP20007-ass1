@@ -1,9 +1,9 @@
-/* ... */
+// Done by Isitha Subasinghe 911584
+// University of Melbourne
+// Semester 1 - 2018
+// COMP20007 - Assignment 1
 
 //#define TEST_SUITE_ON
-
-#define MIN(x, y) (((x) < (y)) ? (x) : (y))
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <assert.h>
