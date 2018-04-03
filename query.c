@@ -3,7 +3,7 @@
 // Semester 1 - 2018
 // COMP20007 - Assignment 1
 
-//#define TEST_SUITE_ON
+#define TEST_SUITE_ON
 #include <stdio.h>
 #include <stdlib.h>
 #include <assert.h>
